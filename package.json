@@ -1,0 +1,38 @@
+{
+  "name": "sv-api",
+  "version": "1.0.1",
+  "description": "StudentVerification Nodejs API",
+  "main": "sv-api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manalotoj/sv-api.git"
+  },
+  "keywords": [
+    "studentverification",
+    "verification",
+    "api",
+    "rest"
+  ],
+  "author": "john manaloto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manalotoj/sv-api/issues"
+  },
+  "homepage": "https://github.com/manalotoj/sv-api#readme",
+  "dependencies": {
+    "adm-zip": "^0.4.7",
+    "memorystream": "^0.3.1",
+    "promise": "^7.0.4",
+    "request": "^2.62.0",
+    "request-promise": "^0.4.3",
+    "unzip": "^0.1.11"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.0.0",
+    "oauth-wrap": "^1.0.4",
+    "proxyquire": "^1.7.2"
+  }
+}
