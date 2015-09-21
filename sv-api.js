@@ -1,6 +1,10 @@
 /** 
 * @module sv-api
-* @description Exposes operations supported by StudentVerification RESTful API
+* @description Exposes operations supported by StudentVerification RESTful API.
+* Operations are grouped in the following classes:
+*		isirs
+*		documents
+*		requirements	
 */
 
 'use strict';
@@ -12,9 +16,13 @@ var Request = require('request');
 var unzip = require('unzip');
 var MemoryStream = require('memorystream');
 
+/** 
+* @Class isirs
+* @description Represents functions associated with ISIR files
+*/
 var isirs = {
 	/**
-	* upload a file as application/octet-stream content
+	* @description upload a file as application/octet-stream content
 	* @param {rootUrl} Root url of awardletter API
 	* @param {authorization} Authorization header value
 	* @param {awardYear} award year in [YYYY]-[YYYY] format; ex. 2015-2016
@@ -36,7 +44,7 @@ var isirs = {
 	  return httpRequest.post(options);
   	},
 	/**
-	* Get batched ISIR corrections for a given start date and end date
+	* @description Get batched ISIR corrections for a given start date and end date
 	* @param {rootUrl} Root url of awardletter API
 	* @param {authorization} Authorization header value
 	* @param {awardYear} award year in [YYYY]-[YYYY] format; ex. 2015-2016
@@ -99,11 +107,15 @@ var isirs = {
 			});
 		return promise;
 	}
-};
+}
 
+/** 
+* @Class documents
+* @description Represents functions associated with student documents
+*/
 var documents = {
 	/**
-	*	Get student document metadata.
+	*	@description Get student document metadata.
 	*	@returns {function} A promise.
 	*		The promise will resolve with the metadata in JSON string format.
 	*		Any response with a status code that is not 2xx  will result in a rejected promise.
@@ -180,6 +192,10 @@ var documents = {
 	}
 }
 
+/** 
+* @Class requirements
+* @description Represents functions associated with student requirements/tasks
+*/
 var requirements = {
 
 }
