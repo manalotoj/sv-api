@@ -23,9 +23,9 @@ var MemoryStream = require('memorystream');
 var isirs = {
 	/**
 	* @description upload a file as application/octet-stream content
-	* @param {rootUrl} Root url of awardletter API
-	* @param {authorization} Authorization header value
-	* @param {awardYear} award year in [YYYY]-[YYYY] format; ex. 2015-2016
+	* @param {string} rootUrl url of awardletter API
+	* @param {string} authorization header value
+	* @param {string} awardYear Award/aid year in [YYYY]-[YYYY] format; ex. 2015-2016
 	* @param {object} content JSON content to be uploaded
 	* @returns {function} A promise.
 	*   Any response whose status code is not 2xx will result in a rejected promise.
@@ -45,16 +45,16 @@ var isirs = {
   	},
 	/**
 	* @description Get batched ISIR corrections for a given start date and end date
-	* @param {rootUrl} Root url of awardletter API
-	* @param {authorization} Authorization header value
-	* @param {awardYear} award year in [YYYY]-[YYYY] format; ex. 2015-2016
+	* @param {string} rootUrl url of awardletter API
+	* @param {string} authorization header value
+	* @param {string} awardYear Award/aid year in [YYYY]-[YYYY] format; ex. 2015-2016
 	* @param {object} content JSON content to be uploaded
 	* @returns {function} A promise.
 	*   The promise will resolve with an a ZIP file of all corrections. The ZIP file
 	*	will contain a folder for each day within the date range whether or not ISIR
 	*	corrections were batched for that day. The folder will be named "MM-DD-YYYY".
 	*   Any response whose status code is not 2xx will result in a rejected promise.
-	*/  	
+	*/
 	getCorrections: function(rootUrl, authorization, startDate, endDate, targetPath) {
 		//console.log('startDate: ', startDate, '; endDate: ', endDate);
 		//console.log('authorization: ', authorization);

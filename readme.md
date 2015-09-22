@@ -6,8 +6,8 @@ Exposes operations supported by StudentVerification RESTful API.Operations are 
 * [sv-api](#module_sv-api)
   * [~isirs](#module_sv-api..isirs)
     * [new isirs()](#new_module_sv-api..isirs_new)
-    * [.upload(Root, Authorization, award, content)](#module_sv-api..isirs.upload) ⇒ <code>function</code>
-    * [.getCorrections(Root, Authorization, award, content)](#module_sv-api..isirs.getCorrections) ⇒ <code>function</code>
+    * [.upload(rootUrl, authorization, awardYear, content)](#module_sv-api..isirs.upload) ⇒ <code>function</code>
+    * [.getCorrections(rootUrl, authorization, awardYear, content)](#module_sv-api..isirs.getCorrections) ⇒ <code>function</code>
   * [~documents](#module_sv-api..documents)
     * [new documents()](#new_module_sv-api..documents_new)
     * [.getMetadata()](#module_sv-api..documents.getMetadata) ⇒ <code>function</code>
@@ -22,15 +22,15 @@ Exposes operations supported by StudentVerification RESTful API.Operations are 
 
 * [~isirs](#module_sv-api..isirs)
   * [new isirs()](#new_module_sv-api..isirs_new)
-  * [.upload(Root, Authorization, award, content)](#module_sv-api..isirs.upload) ⇒ <code>function</code>
-  * [.getCorrections(Root, Authorization, award, content)](#module_sv-api..isirs.getCorrections) ⇒ <code>function</code>
+  * [.upload(rootUrl, authorization, awardYear, content)](#module_sv-api..isirs.upload) ⇒ <code>function</code>
+  * [.getCorrections(rootUrl, authorization, awardYear, content)](#module_sv-api..isirs.getCorrections) ⇒ <code>function</code>
 
 <a name="new_module_sv-api..isirs_new"></a>
 #### new isirs()
 Represents functions associated with ISIR files
 
 <a name="module_sv-api..isirs.upload"></a>
-#### isirs.upload(Root, Authorization, award, content) ⇒ <code>function</code>
+#### isirs.upload(rootUrl, authorization, awardYear, content) ⇒ <code>function</code>
 upload a file as application/octet-stream content
 
 **Kind**: static method of <code>[isirs](#module_sv-api..isirs)</code>  
@@ -38,13 +38,13 @@ upload a file as application/octet-stream content
 
 | Param | Type | Description |
 | --- | --- | --- |
-| Root | <code>rootUrl</code> | url of awardletter API |
-| Authorization | <code>authorization</code> | header value |
-| award | <code>awardYear</code> | year in [YYYY]-[YYYY] format; ex. 2015-2016 |
+| rootUrl | <code>string</code> | url of awardletter API |
+| authorization | <code>string</code> | header value |
+| awardYear | <code>string</code> | Award/aid year in [YYYY]-[YYYY] format; ex. 2015-2016 |
 | content | <code>object</code> | JSON content to be uploaded |
 
 <a name="module_sv-api..isirs.getCorrections"></a>
-#### isirs.getCorrections(Root, Authorization, award, content) ⇒ <code>function</code>
+#### isirs.getCorrections(rootUrl, authorization, awardYear, content) ⇒ <code>function</code>
 Get batched ISIR corrections for a given start date and end date
 
 **Kind**: static method of <code>[isirs](#module_sv-api..isirs)</code>  
@@ -52,9 +52,9 @@ Get batched ISIR corrections for a given start date and end date
 
 | Param | Type | Description |
 | --- | --- | --- |
-| Root | <code>rootUrl</code> | url of awardletter API |
-| Authorization | <code>authorization</code> | header value |
-| award | <code>awardYear</code> | year in [YYYY]-[YYYY] format; ex. 2015-2016 |
+| rootUrl | <code>string</code> | url of awardletter API |
+| authorization | <code>string</code> | header value |
+| awardYear | <code>string</code> | Award/aid year in [YYYY]-[YYYY] format; ex. 2015-2016 |
 | content | <code>object</code> | JSON content to be uploaded |
 
 <a name="module_sv-api..documents"></a>
