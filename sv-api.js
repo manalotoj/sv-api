@@ -75,11 +75,9 @@ var isirs = {
 						var fileName = entry.path.replace('/', '-');
 						var type = entry.type; // 'Directory' or 'File'
 
-						console.log('found a file; type: ', type, '; name: ', fileName);
-
 						if (type === 'File') {							
-							console.log('found a file: ', fileName);
-							console.log('target path + filename: ', targetPath + fileName);
+							//console.log('found a file: ', fileName);
+							//console.log('target path + filename: ', targetPath + fileName);
 							
 							var destination;
 							var stream;
@@ -137,7 +135,7 @@ var documents = {
 	*'			{ name: 'file name', type: 'file type', content: file_content }
 	*		Any response with a status code that is not 2xx  will result in a rejected promise.
 	**/	
-	getFiles: function(rootUrl, authorization, documentId) {
+	getFiles: function(rootUrl, authorization, documentId, targetPath) {
 	  var options = {
 	  	url: rootUrl + 'document/' + documentId + '/zip',
 		headers: { 'Authorization': authorization }
@@ -153,11 +151,17 @@ var documents = {
 					var fileName = entry.path;
 					var type = entry.type; // 'Directory' or 'File'
 
-					//console.log('found something: ', fileName);
 					if (type === 'File') {
-						//var destination = fs.createWriteStream('./' + fileName);
-						var stream = new MemoryStream(null, { readable: false });
-						entry.pipe(stream);
+						var destination;
+						var stream;
+
+						if (targetPath && targetPath.length > 0) {							
+							destination = fs.createWriteStream(targetPath + '/' + fileName);
+							entry.pipe(destination);
+						} else {
+							stream = new MemoryStream(null, { readable: false });
+							entry.pipe(stream);
+						}
 						parsedFiles.push({ name: fileName, type: type, content: stream });
 					}
 				} catch(error) {
@@ -183,10 +187,10 @@ var documents = {
 	*		the metadata while the second element will contain the file(s).
 	*		Any response with a status code that is not 2xx  will result in a rejected promise.
 	**/
-	get: function(rootUrl, authorization, documentId) {
+	get: function(rootUrl, authorization, documentId, targetPath) {
 		var promises = [];
-		promises.push(this.getMetadata(rootUrl, authorization, documentId));
-		promises.push(this.getFiles(rootUrl, authorization, documentId));
+		promises.push(this.getMetadata(rootUrl, authorization, documentId, targetPath));
+		promises.push(this.getFiles(rootUrl, authorization, documentId, targetPath));
 
 		return Promise.all(promises);
 	}
