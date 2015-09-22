@@ -47,13 +47,16 @@ var isirs = {
 	* @description Get batched ISIR corrections for a given start date and end date
 	* @param {string} rootUrl url of awardletter API
 	* @param {string} authorization header value
-	* @param {string} awardYear Award/aid year in [YYYY]-[YYYY] format; ex. 2015-2016
-	* @param {object} content JSON content to be uploaded
+	* @param {string} startDate A start date in MM-DD-YYYY format
+	* @param {string} endDate An end date in MM-DD-YYYY format
+	* @param {string} targetPath An optional target path in which files will be written
 	* @returns {function} A promise.
-	*   The promise will resolve with an a ZIP file of all corrections. The ZIP file
-	*	will contain a folder for each day within the date range whether or not ISIR
-	*	corrections were batched for that day. The folder will be named "MM-DD-YYYY".
-	*   Any response whose status code is not 2xx will result in a rejected promise.
+	*   The promise will resolve with an array of objects containing the metadata associated with
+	*   0 or more ISIR correction files. Each array element is an object with the following properties:
+	*'			{ name: 'file name', type: 'file type', content: file_content }
+	*	If a targetPath is not provided, the content property will be a **memorystream** object
+	*	contain the contents of the file (refer to https://github.com/JSBizon/node-memorystream).
+	*	Any response with a status code that is not 2xx  will result in a rejected promise.
 	*/
 	getCorrections: function(rootUrl, authorization, startDate, endDate, targetPath) {
 		//console.log('startDate: ', startDate, '; endDate: ', endDate);
@@ -114,8 +117,11 @@ var isirs = {
 var documents = {
 	/**
 	*	@description Get student document metadata.
-	*	@returns {function} A promise.
-	*		The promise will resolve with the metadata in JSON string format.
+	* @param {string} rootUrl url of awardletter API
+	* @param {string} authorization header value
+	* @param  {string} documentId The unique Id of the student document
+	* @returns {function} A promise.
+	*       The promise will resolve with the metadata in JSON string format.
 	*		Any response with a status code that is not 2xx  will result in a rejected promise.
 	**/
 	getMetadata: function(rootUrl, authorization, documentId) {
@@ -135,6 +141,16 @@ var documents = {
 	*'			{ name: 'file name', type: 'file type', content: file_content }
 	*		Any response with a status code that is not 2xx  will result in a rejected promise.
 	**/	
+	
+	/**
+	 * [getFiles description]
+	 * @param  {string} rootUrl
+	 * @param  {string} authorization
+	 * @param  {string} documentId
+	 * @param  {string} targetPath
+	 * @return {function} A promise.
+	 *      Any response with a status code that is not 2xx  will result in a rejected promise.
+	 */
 	getFiles: function(rootUrl, authorization, documentId, targetPath) {
 	  var options = {
 	  	url: rootUrl + 'document/' + documentId + '/zip',
