@@ -27,6 +27,4 @@ node_modules
 doc
 out
 target
-integration
-integration.*
-integration.*.js
+integration.config.*

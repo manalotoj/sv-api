@@ -1,6 +1,6 @@
 {
   "name": "sv-api",
-  "version": "1.0.1",
+  "version": "1.0.8",
   "description": "StudentVerification Nodejs API",
   "main": "sv-api.js",
   "scripts": {
@@ -23,12 +23,12 @@
   },
   "homepage": "https://github.com/manalotoj/sv-api#readme",
   "dependencies": {
-    "adm-zip": "^0.4.7",
     "memorystream": "^0.3.1",
     "promise": "^7.0.4",
     "request": "^2.62.0",
     "request-promise": "^0.4.3",
-    "unzip": "^0.1.11"
+    "unzip": "=0.1.x",
+    "winston": "^1.0.1"
   },
   "devDependencies": {
     "fs-extra": "^0.24.0",
