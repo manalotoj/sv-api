@@ -1,9 +1,6 @@
 jasmine.getEnv().addReporter(new jasmine.ConsoleReporter(console.log));
 
 var config = require('./integration.config.json');
-console.log(config);
-
-
 var fse = require('fs-extra');
 var proxyquire = require('proxyquire');
 var oauthwrap = require('oauth-wrap');
