@@ -95,10 +95,10 @@ describe("sv-api integration", function(){
 
 		beforeEach(function(done) {
 			oauthwrap.getAuthHeader(
-				'https://studentverification.accesscontrol.windows.net/WRAPv0.9/', 
-				'dev_local_system', 
-				'Cl.123456', 
-				'https://apiqa.studentverification.com:5443/')
+				config.oauthWrapRequest.url, 
+				config.oauthWrapRequest.creds.uid, 
+				config.oauthWrapRequest.creds.pwd, 
+				config.oauthWrapRequest.wrapScope)
 				.then(function(response) {					
 					authorization = response;
 					done();

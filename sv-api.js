@@ -70,8 +70,6 @@ var isirs = {
 
 		var request = httpRequest.get(options);
 
-		svApi.logger.debug('this is the request promise: ', request);
-
 		var parsedFiles = [];
 		var promise = new Promise(function(resolve, reject) {
 
@@ -185,14 +183,14 @@ var documents = {
 						var stream;
 
 						if (targetPath && targetPath.length > 0) {							
-							destination = fs.createWriteStream(targetPath + '/' + fileName);
+							destination = fs.createWriteStream(targetPath + '/' + documentId + '-' + fileName);
 							entry.pipe(destination);
-							svApi.logger.debug('getFiles > ', fileName, ' piped to ', targetPath + '/' + fileName);
+							svApi.logger.debug('getFiles > ', documentId + '-' + fileName, ' piped to ', targetPath + '/' + fileName);
 						} else {
 							stream = new MemoryStream(null, { readable: false });
 							entry.pipe(stream);
 						}
-						parsedFiles.push({ name: fileName, type: type, content: stream });
+						parsedFiles.push({ name: documentId + '-' + fileName, type: type, content: stream });
 					}
 				} catch(error) {
 					svApi.logger.error('Error encountered while processing student file: ', error);
